@@ -36,7 +36,7 @@ public  class DroneController {
     private final int system_id = 1;
     private final int component_id = 0;
     private final int message_id = 0;
-    private final ExecutorService executorArm = Executors.newSingleThreadExecutor();q       q   q       qq                          q               qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq  qqqq    qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqww
+    private final ExecutorService executorArm = Executors.newSingleThreadExecutor();
 
     private final Handler handler = new Handler(Looper.getMainLooper());
 

@@ -1,0 +1,2 @@
+C:/Users/aviks/OneDrive/Desktop/StudioProjects/GCS-Application/android/app/.cxx/Debug/6v55j39n/x86/CMakeFiles/edit_cache.dir
+C:/Users/aviks/OneDrive/Desktop/StudioProjects/GCS-Application/android/app/.cxx/Debug/6v55j39n/x86/CMakeFiles/rebuild_cache.dir

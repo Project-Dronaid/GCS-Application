@@ -9,6 +9,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
+import java.util.*;
 import android.util.Log;
 import io.dronefleet.mavlink.*;
 import io.dronefleet.mavlink.common.*;
@@ -29,7 +30,7 @@ public  class DroneController {
     }
 
     private static final String TAG = "DroneController"; // Tag to identify the source of the log message
-    private static final String drone_ip_address = "192.168.109.174";
+    private static final String drone_ip_address = "10.0.2.2";
     private static final int drone_port = 5762;
 
     private MavlinkConnection connection;
@@ -144,6 +145,13 @@ public  class DroneController {
             double latitude = gpsMessage.lat() / 1E7;
             double longitude = gpsMessage.lon() / 1E7;
             double altitude = gpsMessage.alt() / 1000.0;
+            double relAlt = gpsMessage.relativeAlt() / 1000.0; // in meters
+            double vx = gpsMessage.vx() / 100.0;
+            double vy = gpsMessage.vy() / 100.0;
+            double vz = gpsMessage.vz() / 100.0;
+            double heading = gpsMessage.hdg() != 65535 ? gpsMessage.hdg() / 100.0 : -1; // -1 = unknown
+
+            double speed = Math.sqrt(vx * vx + vy * vy); // horizontal speed
 
             String gpsInfo = "GPS: Lat=" + latitude + ", Lon=" + longitude;
             String altitudeInfo = "Altitude: " + altitude + " m";
@@ -152,8 +160,15 @@ public  class DroneController {
             Log.d(TAG, altitudeInfo);
 
             handler.post(() -> {
-//                gpsTextView.setText(gpsInfo);
-//                altitudeTextView.setText(altitudeInfo);
+                Map<String, Object> data= new HashMap<>();
+                data.put("latitude", latitude);
+                data.put("longitude", longitude);
+                data.put("altitude", altitude);
+                data.put("relativeAltitude", relAlt);
+                data.put("speed", speed);
+                data.put("heading", heading);
+
+                channel.invokeMethod("updateTelemetry", data);
             });
         }
     }

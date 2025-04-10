@@ -27,6 +27,19 @@ public class MainActivity extends FlutterActivity {
                     droneController.toggleArmDisarm();
                     result.success("Toggled");
                     break;
+                case "startMission":
+                    droneController.startMission();
+                    result.success("Toggled");
+                    break;
+                case "abortMission":
+                    droneController.abortMission();
+                    result.success("Toggled");
+                    break;
+                case "changeFlightMode":
+                    String mode= call.argument("mode");
+                    droneController.changeFlightMode(mode);
+                    result.success("Mode Change Requested");
+                    break;
                 default:
                     result.notImplemented();
             }

@@ -38,7 +38,7 @@ class _FlightDetailsState extends State<FlightDetails> {
   @override
   Widget build(BuildContext context) {
     final data=widget.data;
-    final altitude = data["altitude"]?.toStringAsFixed(2) ?? "0.0";
+    final altitude = data["latitude"]?.toStringAsFixed(2) ?? "0.0";
     final ground_speed = data["speed"]?.toStringAsFixed(2) ?? "0.0";
     return Container(
       height: MediaQuery.of(context).size.height/2.3,

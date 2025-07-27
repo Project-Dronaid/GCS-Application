@@ -37,6 +37,7 @@ public class MainActivity extends FlutterActivity {
                     break;
                 case "changeFlightMode":
                     String mode= call.argument("mode");
+
                     droneController.changeFlightMode(mode);
                     result.success("Mode Change Requested");
                     break;
